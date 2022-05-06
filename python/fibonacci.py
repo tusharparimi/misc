@@ -1,3 +1,4 @@
+# This implementation of fibonacci series is done by using recursion. The function takes three parameters (n,x1,x2) n being the limit number and x1 and x2 being the start variables 
 # Using recursion
 def fib(n,x,y):
     if n==0:
