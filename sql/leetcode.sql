@@ -53,4 +53,24 @@ ORDER BY 2 DESC
 LIMIT 10
 ;
 
+-- customer placing largest order
+/*
+SELECT customer_number
+FROM 
+(SELECT customer_number,COUNT(order_number)
+FROM Orders
+GROUP BY 1
+ORDER BY 2 DESC
+) x
+LIMIT 1;
+*/
+SELECT customer_number
+FROM Orders
+GROUP BY 1
+ORDER BY COUNT(order_number) DESC
+LIMIT 1
+;
+
+
+
         
