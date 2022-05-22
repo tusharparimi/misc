@@ -82,7 +82,15 @@ INNER JOIN Company ON Orders.com_id=Company.com_id
 WHERE Company.name='RED')
 ;
 
-
+-- product only sold in a date range
+SELECT product_id,product_name 
+FROM Product p
+WHERE product_id NOT IN
+(SELECT p.product_id
+ FROM Sales s
+ INNER JOIN Product p ON s.product_id=p.product_id
+WHERE sale_date>'2019-03-31' OR sale_date<'2019-01-01'
+);
 
 
         
