@@ -92,5 +92,14 @@ WHERE product_id NOT IN
 WHERE sale_date>'2019-03-31' OR sale_date<'2019-01-01'
 );
 
+-- updating a table with case
+UPDATE salary
+SET 
+    sex=
+        CASE 
+        WHEN sex='m' THEN 'f'
+        ELSE 'm'
+        END
+;
 
         
