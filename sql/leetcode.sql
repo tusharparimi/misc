@@ -4,6 +4,7 @@ FROM Employee
 WHERE Salary < (SELECT MAX(Salary) FROM Employee)
 
 -- Delete duplicate emails
+-- Using ROW_NUMBER()
 DELETE FROM Person
 WHERE id IN
 (SELECT id FROM
@@ -12,3 +13,16 @@ WHERE id IN
 WHERE rownum!=1) 
  y) 
  ;
+ -- Using self join
+ DELETE p1 FROM Person p1,
+    Person p2
+WHERE
+    p1.Email = p2.Email AND p1.Id > p2.Id;
+ -- alternate
+  DELETE FROM Person WHERE Id NOT IN 
+(SELECT * FROM(
+    SELECT MIN(Id) FROM Person GROUP BY Email) as p);
+ 
+    
+ 
+ 
