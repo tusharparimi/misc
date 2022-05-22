@@ -22,7 +22,12 @@ WHERE
   DELETE FROM Person WHERE Id NOT IN 
 (SELECT * FROM(
     SELECT MIN(Id) FROM Person GROUP BY Email) as p);
- 
+
+-- Employee salary greater than manager (self join)
+SELECT e1.name AS Employee 
+FROM Employee e1 
+INNER JOIN Employee e2 ON e1.managerid=e2.id
+WHERE e1.salary>e2.salary;
     
  
  
