@@ -33,5 +33,12 @@ WHERE e1.salary>e2.salary;
 SELECT w1.id FROM Weather w1, Weather w2 
 WHERE DATEDIFF( w1.recordDate, w2.recordDate)=1 AND w1.temperature>w2.temperature;
     
- 
+-- Order COunts grouped by month and category
+SELECT SUBSTR(OrderDate,1,7) AS order_month,CategoryName,COUNT(*) AS order_count
+FROM Orders o
+LEFT JOIN OrderDetails od ON o.OrderID=od.OrderID
+LEFT JOIN Products p ON od.ProductID=p.ProductID
+LEFT JOIN Categories c ON p.CategoryID=c.CategoryID
+GROUP BY 1,2
+;
  
