@@ -71,6 +71,18 @@ ORDER BY COUNT(order_number) DESC
 LIMIT 1
 ;
 
+-- Sales person not associated with a particular company
+SELECT DISTINCT s.name 
+FROM SalesPerson s
+WHERE
+s.sales_id NOT IN
+(SELECT sales_id 
+ FROM Orders
+INNER JOIN Company ON Orders.com_id=Company.com_id
+WHERE Company.name='RED')
+;
+
+
 
 
         
