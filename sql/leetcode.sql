@@ -1,12 +1,16 @@
--- Second highest salary query
+/* -------------------------------------------------------------------------------------- 
+   Second highest salary query
+   -------------------------------------------------------------------------------------- */
 SELECT MAX(Salary) AS SecondHighestSalary
 FROM Employee
 WHERE Salary < (SELECT MAX(Salary) FROM Employee)
 
 
 
+/* -------------------------------------------------------------------------------------- 
+   Delete duplicate emails
+   -------------------------------------------------------------------------------------- */
 
--- Delete duplicate emails
 -- Using ROW_NUMBER()
 DELETE FROM Person
 WHERE id IN
@@ -30,8 +34,9 @@ WHERE
 
 
 
-
--- Employee salary greater than manager (self join)
+/* -------------------------------------------------------------------------------------- 
+   Employee salary greater than manager (self join)
+   -------------------------------------------------------------------------------------- */
 SELECT e1.name AS Employee 
 FROM Employee e1 
 INNER JOIN Employee e2 ON e1.managerid=e2.id
@@ -44,7 +49,10 @@ WHERE DATEDIFF( w1.recordDate, w2.recordDate)=1 AND w1.temperature>w2.temperatur
     
 
 
--- customer placing largest order
+
+/* -------------------------------------------------------------------------------------- 
+   customer placing largest order
+   -------------------------------------------------------------------------------------- */
 /*
 SELECT customer_number
 FROM 
@@ -64,7 +72,9 @@ LIMIT 1
 
 
 
--- Sales person not associated with a particular company
+/* -------------------------------------------------------------------------------------- 
+   Sales person not associated with a particular company
+   -------------------------------------------------------------------------------------- */
 SELECT DISTINCT s.name 
 FROM SalesPerson s
 WHERE
@@ -77,8 +87,9 @@ WHERE Company.name='RED')
 
 
 
-
--- product only sold in a date range
+/* -------------------------------------------------------------------------------------- 
+   product only sold in a date range
+   -------------------------------------------------------------------------------------- */
 SELECT product_id,product_name 
 FROM Product p
 WHERE product_id NOT IN
@@ -90,8 +101,9 @@ WHERE sale_date>'2019-03-31' OR sale_date<'2019-01-01'
 
 
 
-
--- updating a table with case
+/* -------------------------------------------------------------------------------------- 
+   updating a table with case
+   -------------------------------------------------------------------------------------- */
 UPDATE salary
 SET 
     sex=
