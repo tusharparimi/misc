@@ -145,3 +145,19 @@ UNION ALL
 SELECT product_id, 'store2' AS store, store2 AS price FROM Products WHERE store2 IS NOT NULL
 UNION ALL
 SELECT product_id, 'store3' AS store, store3 AS price FROM Products WHERE store3 IS NOT NULL
+
+/* -------------------------------------------------------------------------------------- 
+   gain or loss calculation based on  all operations done on stocks
+   -------------------------------------------------------------------------------------- */
+
+
+SELECT stock_name,
+SUM(
+CASE 
+    WHEN operation='Buy' THEN -1*price
+    ELSE price
+    END
+) AS capital_gain_loss
+FROM Stocks
+GROUP BY 1
+;
