@@ -161,3 +161,37 @@ CASE
 FROM Stocks
 GROUP BY 1
 ;
+
+
+/* -------------------------------------------------------------------------------------- 
+   joining tables and aggregation based on column value
+   -------------------------------------------------------------------------------------- */
+
+
+/*
+SELECT u.user_id AS buyer_id,u.join_date,COUNT(o.order_id) AS orders_in_2019
+FROM Users u
+LEFT JOIN Orders o ON u.user_id=o.buyer_id
+WHERE o.order_date LIKE '2019%'
+GROUP BY u.user_id
+UNION ALL
+SELECT user_id,join_date,0
+FROM Users
+WHERE user_id NOT IN 
+(SELECT u.user_id 
+ FROM Users u
+LEFT JOIN Orders o ON u.user_id=o.buyer_id
+WHERE o.order_date LIKE '2019%')
+;
+*/
+
+SELECT u.user_id AS buyer_id,u.join_date,SUM(
+CASE 
+    WHEN o.order_date LIKE "2019%" THEN 1
+    ELSE 0
+    END
+) AS orders_in_2019
+FROM Users u
+LEFT JOIN Orders o ON u.user_id=o.buyer_id
+GROUP BY u.user_id
+;
