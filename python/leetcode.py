@@ -1,4 +1,25 @@
 #------------------------------------------------------
+# ispalindrome but input as singly linked list
+#------------------------------------------------------
+
+def isPalindrome(self, head: Optional[ListNode]) -> bool:
+        lst1=[]
+        while head.next!=None:
+            lst1.append(head.val)
+            head=head.next
+        lst1.append(head.val)
+        print(lst1)
+        lst2=[]
+        for i in range(0,len(lst1)):
+            lst2.append(lst1[len(lst1)-1-i])
+        
+        for i in range(0,len(lst1)):
+            if lst1[i]!=lst2[i]:
+                return False 
+        return True
+
+
+#------------------------------------------------------
 # ispalindrome for number without changing to string
 #------------------------------------------------------
 
