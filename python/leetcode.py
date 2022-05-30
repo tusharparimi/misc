@@ -1,4 +1,33 @@
 #------------------------------------------------------
+# number as a list plus one
+#------------------------------------------------------
+
+def plusOne(self, digits: List[int]) -> List[int]:
+        return list(str(int("".join(str(i) for i in digits)) + 1))
+
+def plusOne(self, digits: List[int]) -> List[int]:
+        if digits[len(digits)-1]!=9:
+            digits[len(digits)-1]=digits[len(digits)-1]+1
+            return digits
+        elif len(digits)==1 and digits[len(digits)-1]==9:
+            digits[0]=1
+            digits.append(0)
+            return digits
+        else:
+            for i in range(0,len(digits)):
+                if digits[len(digits)-1-i]!=9:
+                    digits[len(digits)-1-i]=digits[len(digits)-1-i]+1
+                    return digits
+                else:
+                    digits[len(digits)-1-i]=0
+            digits[0]=1
+            digits.append(0)
+            return digits
+
+
+
+
+#------------------------------------------------------
 # ispalindrome but input as singly linked list
 #------------------------------------------------------
 
