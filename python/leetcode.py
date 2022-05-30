@@ -77,3 +77,47 @@ def isPalindrome(self, x: int) -> bool:
             if list1[i]!=list2[len(list2)-1-i]:
                 return False
         return True'''
+
+        
+      
+#------------------------------------------------------
+# Reversing linked list
+#------------------------------------------------------  
+        def reverseList(self, head):
+        curr = head 
+        prev = None
+        while curr :
+            tmp = curr.next 
+            curr.next = prev
+            prev = curr
+            curr = tmp
+        return prev
+
+
+        def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        
+        if head==None:
+            return None
+        lst1=[]
+        
+        while head.next!=None:
+            lst1.append(head.val)
+            head=head.next
+        lst1.append(head.val)
+        
+        lst2=[]
+        for i in range(0,len(lst1)):
+            lst2.append(lst1[len(lst1)-1-i])
+        
+        res=[]
+        
+        tail=ListNode(lst2[0])
+        
+        x=tail
+        
+        for i in range(1,len(lst2)):
+            x.next=ListNode(lst2[i])
+            
+            x=x.next
+        
+        return tail
