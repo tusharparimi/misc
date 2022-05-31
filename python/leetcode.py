@@ -1,4 +1,27 @@
 #------------------------------------------------------
+# length of last word
+#------------------------------------------------------
+
+
+ #COmplexity O(n)
+    def lengthOfLastWord(self, s: str) -> int:
+        i=len(s)-1
+        mark=-1
+        flag=False
+        if len(s)==1:
+            return 1
+        while i>=0 :
+            if s[i]!=" " and flag==False:
+                mark=i
+                flag=True
+            if s[i]==" " and mark!=-1:
+                return mark-i
+            i=i-1
+        if mark!=-1:
+            return mark+1
+
+
+#------------------------------------------------------
 # number as a list plus one
 #------------------------------------------------------
 
