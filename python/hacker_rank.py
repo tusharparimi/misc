@@ -47,7 +47,7 @@ while start<=n:
     
     
 # -------------------------------------------------------------------
-# Python 
+# Python non constant number of parameters to a function
 # -------------------------------------------------------------------
 
 #!/bin/python3
