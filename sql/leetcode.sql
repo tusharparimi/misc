@@ -1,4 +1,16 @@
 /* -------------------------------------------------------------------------------------- 
+  player activities and their first ever device used based on event_date
+   -------------------------------------------------------------------------------------- */
+SELECT a.player_id,a.device_id
+FROM Activity a INNER JOIN
+(SELECT player_id,MIN(event_date) AS event_date
+FROM Activity 
+GROUP BY  player_id) b
+ON a.player_id=b.player_id AND a.event_date=b.event_date;
+
+
+
+/* -------------------------------------------------------------------------------------- 
    Second highest salary query
    -------------------------------------------------------------------------------------- */
 SELECT MAX(Salary) AS SecondHighestSalary
