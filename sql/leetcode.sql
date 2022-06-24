@@ -1,4 +1,28 @@
 /* -------------------------------------------------------------------------------------- 
+  max number with COUNT()=1 
+   -------------------------------------------------------------------------------------- */
+/*SELECT MAX(num) AS num
+FROM
+(SELECT num 
+FROM MyNumbers
+GROUP BY num
+HAVING COUNT(num)=1
+) x
+;
+*/
+
+SELECT IFNULL(
+(SELECT num 
+FROM MyNumbers
+GROUP BY num
+HAVING COUNT(num)=1
+ ORDER BY num DESC
+ LIMIT 1
+),NULL) AS num;
+
+
+
+/* -------------------------------------------------------------------------------------- 
    acceptance rate of requests when requests in one table and accepted requested in another
    -------------------------------------------------------------------------------------- */
 SELECT 
