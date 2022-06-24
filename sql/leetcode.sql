@@ -1,4 +1,17 @@
 /* -------------------------------------------------------------------------------------- 
+   acceptance rate of requests when requests in one table and accepted requested in another
+   -------------------------------------------------------------------------------------- */
+SELECT 
+ROUND(
+    IFNULL(
+(SELECT COUNT(*) FROM (SELECT DISTINCT requester_id, accepter_id FROM RequestAccepted) AS a)/
+(SELECT COUNT(*) FROM (SELECT DISTINCT sender_id, send_to_id FROM FriendRequest) AS r),0
+    )
+    ,2) AS accept_rate;
+
+
+
+/* -------------------------------------------------------------------------------------- 
   player activities and their first ever device used based on event_date
    -------------------------------------------------------------------------------------- */
 SELECT a.player_id,a.device_id
