@@ -1,4 +1,21 @@
 /* -------------------------------------------------------------------------------------- 
+session bar chart 
+   -------------------------------------------------------------------------------------- */
+SELECT "[0-5>" AS bin,COUNT(session_id) AS total FROM Sessions
+WHERE (duration/60)>=0 AND (duration/60)<5
+UNION
+SELECT "[5-10>" AS bin,COUNT(session_id) AS total FROM Sessions
+WHERE (duration/60)>=5 AND (duration/60)<10
+UNION
+SELECT "[10-15>" AS bin,COUNT(session_id) AS total FROM Sessions
+WHERE (duration/60)>=10 AND (duration/60)<15
+UNION
+SELECT "15 or more" AS bin,COUNT(session_id) AS total FROM Sessions
+WHERE (duration/60)>=15 
+;
+
+
+/* -------------------------------------------------------------------------------------- 
   max number with COUNT()=1 
    -------------------------------------------------------------------------------------- */
 /*SELECT MAX(num) AS num
